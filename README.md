@@ -1,2 +1,3 @@
 # ckad-exam
 This is for someone who is looking for ckad exam............................
+addhoc command for faster operation on k8s platfrom to manage and deploy the container
