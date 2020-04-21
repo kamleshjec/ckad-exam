@@ -1,0 +1,39 @@
+quick commands to edit PODs and Deployments
+----------------------------------------------------------
+Remember, you CANNOT edit specifications of an existing POD other than the below.
+
+spec.containers[*].image
+spec.initContainers[*].image
+spec.activeDeadlineSeconds
+spec.tolerations
+
+For example you cannot edit the environment variables,
+service accounts, 
+resource limits (all of which we will discuss later) of a running pod. 
+But if you really want to edit, you have 2 options:
+
+kubectl edit pod <pod name> 
+
+above command will open the pod specification in an vi editor, if properties you are trying to edit is not editable
+it will deny while saving.
+
+The second option is to extract the pod definition in YAML format to a file using the command:
+
+kubectl get pod webapp -o yaml > my-new-pod.yaml -- edit the file and delete the existing pod and create new pod by using the defination-file.
+kubectl create -f my-new-pod.yaml 
+
+Delete POD
+kubectl delete pod <pod-name>
+
+Create new pod: 
+kubectl create -f <pod-defination-file.yml>
+
+addhoc command to create pod:
+kubectl run <pod-name> --image=<img-name> --restart=Never
+
+Edit the deployment:
+kubectl edit deployment my-deployment 
+
+
+
+ 
